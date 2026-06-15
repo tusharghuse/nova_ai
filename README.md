@@ -1,8 +1,12 @@
-# 🌌 Nova AI — Personal Productivity Command Center
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-Nova AI is an advanced, highly capable local AI personal assistant and productivity coach. It functions as a conversational agent designed to keep you focused, track your daily goals, schedule reminders, manage tasks, and launch workspace applications directly through text or voice commands.
+# 🌌 Nova AI — On-Device AI Productivity Assistant
 
-Nova AI is built to operate **completely locally**, utilizing Ollama for LLM generation and running a sleek, dual-mode interface (interactive Web Dashboard + CLI/Voice terminal).
+> 🏆 Built for **OSDHack 2026 — On Device AI Theme**
+> 🧠 Fully local AI assistant powered by Ollama
+> 🔒 Privacy-first • ⚡ Offline-capable • 🖥️ Desktop-native productivity system
+
+---
 
 <h3 align="center">🎬 Interactive Console Walkthrough</h3>
 <p align="center">
@@ -20,70 +24,170 @@ Nova AI is built to operate **completely locally**, utilizing Ollama for LLM gen
 
 ---
 
-## ⚡ Key Features
+## 🚀 Overview
 
-* **🧠 Direct Local LLM**: Integrates with [Ollama](https://ollama.com/) (defaults to `phi3` or customizable models) to process all chat requests locally with complete privacy.
-* **🌐 Web Command Console**: A stunning, modern, three-panel web interface built with pure HTML/CSS/JS containing:
-  * **Center Chat Console**: Direct text command entry and response streams.
-  * **Productivity Hub**: Visual cards for active goals, interactive task lists, and scheduled reminders.
-  * **Metrics Grid**: Real-time counts of pending tasks, completed actions, and active alerts.
-* **🎙️ Dual Input Modes**:
-  * **Web-to-Host Recording**: Seamless browser-triggered microphone capture powered by `sounddevice` and transcribed using local speech recognition.
-  * **CLI Terminal Voice**: A fully voice-driven CLI interface that listens to system input and responds out loud via offline Text-to-Speech (`pyttsx3`).
-* **📅 Timed Reminder Scheduler**: Runs an active background thread to schedule and fire timed alerts (e.g., *"remind me at 5 PM to drink water"*).
-* **🛠️ App Launcher & System Shortcuts**: Opens system applications (such as Chrome, VS Code, Slack, or Spotify) on command, built to support Windows, macOS, and Linux.
-* **🔥 No-Excuses Persona**: Programmed with a supportive yet firm, productivity-focused persona that pushes you to tackle tasks and stay disciplined.
+**Nova AI** is a local-first AI productivity assistant that runs entirely on the user's device and helps manage tasks, reminders, schedules, and system actions using natural language (text + voice).
+
+Unlike cloud-based AI assistants, Nova AI is designed to operate **without sending user data to external APIs**, ensuring **privacy, speed, and offline usability**.
+
+It combines:
+* Local LLM inference (via Ollama)
+* Voice interaction system
+* Task + reminder engine
+* OS-level automation
+* Real-time productivity dashboard
 
 ---
 
-## 📂 Repository Architecture
+## 🧠 Why Nova AI?
+
+Modern AI assistants depend heavily on cloud APIs, which introduces:
+* ❌ Privacy risks (user data leaves device)
+* ❌ Internet dependency
+* ❌ Latency issues
+* ❌ API cost limitations
+
+Nova AI demonstrates a different approach:
+> ✅ AI that runs locally
+> ✅ AI that respects privacy
+> ✅ AI that works offline
+> ✅ AI that acts like a real system assistant
+
+---
+
+## 🏆 OSDHack 2026 — On Device AI Alignment
+
+Nova AI is built specifically for the **On Device AI** theme.
+
+### 🧠 Core Requirement Fulfillment
+
+| Requirement | Implementation |
+| :--- | :--- |
+| **On-device AI** | Ollama local LLM (phi3 / configurable models) |
+| **Offline-first** | Core assistant works without internet |
+| **Privacy-focused** | No cloud AI API calls |
+| **Lightweight inference** | Runs on standard laptops |
+| **Local execution** | All logic executed on user machine |
+
+### 🌐 Cloud Usage (Optional Only)
+
+Cloud services are NOT used for AI reasoning. They are only used for:
+* Web UI hosting (Flask local server)
+* Optional authentication or storage (future extension)
+
+👉 **All intelligence stays on-device.**
+
+---
+
+## ⚡ Key Features
+
+### 🧠 Local AI Engine
+* Powered by **Ollama (phi3 or custom models)**
+* Fully offline inference
+* No external API dependency
+
+### 🎙️ Voice + Text Interaction
+* Speech-to-text input (local processing)
+* Offline text-to-speech response system
+* Dual-mode CLI + Web interaction
+
+### 📅 Smart Task & Reminder System
+* Add / complete / delete tasks
+* Background scheduler for timed reminders
+* Persistent local JSON storage
+
+### 🖥️ Productivity Dashboard
+* Live task tracking UI
+* Goal management system
+* Real-time productivity metrics
+
+### 🛠️ System Automation
+* Open applications via commands
+* Cross-platform support (Windows, macOS, Linux)
+* Native OS integration layer
+
+### 🔒 Privacy-First Architecture
+* No cloud AI inference
+* No external prompt sharing
+* Fully local memory storage
+
+---
+
+## 🏗️ System Architecture
+
+```text
+User Input (Text / Voice)
+        ↓
+Web UI / CLI Interface
+        ↓
+Assistant Core (Prompt Engine)
+        ↓
+Ollama Local LLM (On-device inference)
+        ↓
+------------------------------------------------
+| Modules Layer                                 |
+| - Task Manager (JSON storage)                 |
+| - Scheduler (background reminders)            |
+| - Memory System (local persistence)           |
+| - System Actions (OS automation)              |
+------------------------------------------------
+```
+
+---
+
+## 📂 Project Structure
 
 ```text
 Nova AI/
 ├── core/
-│   ├── assistant.py       # Core Assistant logic, system prompt, and CLI router
-│   └── voice.py           # Text-to-speech engine wrapper and audio listener
+│   ├── assistant.py        # AI core logic + system prompt
+│   └── voice.py            # TTS + voice handling
 ├── modules/
-│   ├── memory.py          # Key-value JSON storage for focus goals & preferences
-│   ├── scheduler.py       # Background reminder thread scheduler
-│   ├── system_actions.py  # Application maps & OS command execution wrappers
-│   └── task_manager.py    # JSON task storage logic (add, complete, delete)
+│   ├── memory.py           # Local memory (JSON storage)
+│   ├── scheduler.py        # Background reminder engine
+│   ├── system_actions.py   # OS automation (open apps)
+│   └── task_manager.py     # Task CRUD operations
 ├── static/
-│   ├── app.js             # Frontend API integration & audio recording stream
-│   └── index.css          # Clean, premium glassmorphism styling
+│   ├── app.js              # Frontend logic + API calls
+│   └── index.css           # UI styling (glassmorphism)
 ├── templates/
-│   └── index.html         # Three-panel dashboard template
+│   └── index.html          # Dashboard UI
 ├── utils/
-│   ├── helpers.py         # Natural language time parsing & date formatting
-│   └── logger.py          # Simple file logger
-├── data/                  # Autogenerated JSON databases (ignored by git)
+│   ├── helpers.py          # Time parsing utilities
+│   └── logger.py           # Logging system
+├── data/                  # Local dynamic JSON databases
 │   ├── memory.json
-│   ├── reminders.json
-│   └── tasks.json
-├── app.py                 # Flask Server entry point
-├── main.py                # Terminal / Voice entry point
-├── requirements.txt       # Python dependencies
-└── .env                   # Configuration file (API keys & models)
+│   ├── tasks.json
+│   └── reminders.json
+├── app.py                  # Flask server (Web mode)
+├── main.py                 # CLI / Voice mode
+├── requirements.txt
+└── .env
 ```
 
 ---
 
-## 🚀 Setup & Installation
+## ⚙️ Installation & Setup
 
 ### 1. Prerequisites
-* **Python 3.10+** (tested up to Python 3.14)
-* **Ollama**: Download and install [Ollama](https://ollama.com/). Once installed, pull your desired model (e.g., `phi3`):
+* Python 3.10+
+* Ollama installed → [https://ollama.com/](https://ollama.com/)
+* Pull a local model:
   ```bash
   ollama pull phi3
   ```
 
-### 2. Clone and Initialize Environment
-Navigate to the project directory and create a virtual environment:
+### 2. Clone Repository
+```bash
+git clone <repo-url>
+cd nova-ai
+```
+
+### 3. Create Virtual Environment
 ```bash
 python -m venv .venv
 ```
-
-Activate the virtual environment:
+Activate:
 * **Windows (PowerShell)**:
   ```powershell
   .\.venv\Scripts\Activate.ps1
@@ -97,50 +201,44 @@ Activate the virtual environment:
   source .venv/bin/activate
   ```
 
-### 3. Install Dependencies
-Install all package dependencies:
+### 4. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 > [!NOTE]
 > If you are running the application in **Web Mode** (Flask server), you do not need `pyaudio` to build successfully. The web microphone uses `sounddevice` directly. If `pyaudio` fails to compile on Windows due to missing C++ compiler tools, you can ignore the error, as Flask mode will remain fully functional.
 
-### 4. Configuration
+### 5. Environment Setup
 Create a `.env` file in the root directory:
 ```env
-# Get your key from Google AI Studio (optional/for test scripts)
-GEMINI_API_KEY=your_gemini_api_key_here
-
-# Local Ollama model name to use
 OLLAMA_MODEL=phi3
+GEMINI_API_KEY=your_optional_key
 ```
 
 ---
 
-## 💻 Running Nova AI
+## ▶️ Running Nova AI
 
-### Option A: The Web Dashboard (Recommended)
-Launch the Flask-backed local web server:
+### 🖥️ Web Mode (Recommended)
 ```bash
 python app.py
 ```
-Open your browser and navigate to:
+Open:
 👉 **[http://localhost:5000](http://localhost:5000)**
 
-* Fully interactive chat console.
-* Complete tasks, delete tasks, and refresh stats instantly.
-* Click the 🎤 microphone button to speak commands directly.
+* Chat interface
+* Task management dashboard
+* Voice input support
+* Live productivity metrics
 
-### Option B: The Terminal (CLI) Mode
-Run the assistant inside your CLI console:
-* **Voice-driven mode** (Requires working PyAudio configuration):
-  ```bash
-  python main.py
-  ```
-* **Text-only mode** (Safe fallback):
-  ```bash
-  python main.py --text
-  ```
+### 💻 CLI / Voice Mode
+```bash
+python main.py
+```
+Text-only mode:
+```bash
+python main.py --text
+```
 
 ---
 
@@ -150,17 +248,17 @@ You can speak or type the following structured commands directly to Nova AI:
 
 | Command | Action | Example |
 | :--- | :--- | :--- |
-| `add task [name]` | Adds a new task to your dashboard | *add task Finish presentation* |
-| `show tasks` | Lists all pending tasks | *show tasks* |
-| `done task [number]` | Marks a task completed | *done task 1* |
-| `delete task [number]` | Deletes a task from the list | *delete task 2* |
-| `my goal is [goal]` | Sets your core focus goal | *my goal is to launch my SaaS* |
-| `what is my goal` | Recalls your current focus objective | *what is my goal* |
-| `remind me at [time] to [x]` | Schedules a background reminder | *remind me at 5:30 PM to drink water* |
-| `open [app]` | Launches a system application | *open vscode* |
-| `schedule my day` | Generates a time-blocked schedule | *schedule my day* |
-| `help` | Prints available command list | *help* |
-| `quit` / `goodbye` | Exits the session | *quit* |
+| `add task [name]` | Create new task | *add task Finish presentation* |
+| `show tasks` | List all tasks | *show tasks* |
+| `done task [n]` | Mark task completed | *done task 1* |
+| `delete task [n]` | Remove task | *delete task 2* |
+| `my goal is [...]` | Set primary goal | *my goal is to build a startup* |
+| `what is my goal` | View goal | *what is my goal* |
+| `remind me at [time] [...]` | Schedule reminder | *remind me at 5:30 PM to drink water* |
+| `open [app]` | Launch system app | *open vscode* |
+| `schedule my day` | Generate daily plan | *schedule my day* |
+| `help` | Show commands | *help* |
+| `quit` / `goodbye` | Exit assistant | *quit* |
 
 ---
 
@@ -178,3 +276,45 @@ APP_MAP = {
 
 ### Modifying the AI Personality
 To alter the demeanor or specific prompts of the coach, update the `SYSTEM_PROMPT` inside [core/assistant.py](file:///d:/Projects/Nova%20AI/core/assistant.py).
+
+---
+
+## 🧩 Use Cases
+* Personal productivity assistant
+* Offline AI chatbot
+* Voice-controlled task manager
+* Local automation system
+* Privacy-focused AI alternative to cloud assistants
+
+---
+
+## 🚧 Future Improvements
+* 🔌 Plugin system for custom tools
+* 📱 Mobile companion app
+* 🧠 Long-term vector memory (RAG upgrade)
+* 📅 Google Calendar integration
+* 🤖 Multi-agent task execution system
+* 🎯 Smart prioritization engine
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+You are free to use, modify, distribute, and build upon this project with proper attribution.
+
+See the full license details in the [LICENSE](./LICENSE) file.
+
+---
+
+## 👨‍💻 Author
+
+Built by **Tushar Ghuse**
+
+---
+
+## 🏁 Final Note
+
+Nova AI is designed to demonstrate a simple but powerful idea:
+> “AI should run where the user is — not in the cloud.”
