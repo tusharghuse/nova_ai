@@ -12,12 +12,12 @@
 ---
 
 <h3 align="center">🎬 Interactive Console Walkthrough</h3>
-
-
-Uploading demo.mp4…
-
-
 <p align="center">
+  
+
+https://github.com/user-attachments/assets/1dc90e87-4b77-49b7-ab1c-3551f5cb38da
+
+
   <video src="static/screenshots/demo.mp4" width="97%" controls autoplay loop muted></video>
 </p>
 
