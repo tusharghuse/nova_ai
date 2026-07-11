@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/9a4464d8-e793-4679-98a8-75f713e4bd13
+
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 # 🌌 Nova AI — On-Device AI Productivity Assistant
